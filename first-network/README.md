@@ -5,3 +5,8 @@ The directions for using this are documented in the Hyperledger Fabric
 
 *NOTE:* After navigating to the documentation, choose the documentation version that matches your version of Fabric
 
+
+
+$./byfn.sh up -c mychannel3 -l node
+$./byfn.sh down -c mychannel3 -l node
+$docker ps
