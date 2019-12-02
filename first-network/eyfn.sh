@@ -249,8 +249,8 @@ COMPOSE_FILE_COUCH_ORG3=docker-compose-couch-org3.yaml
 COMPOSE_FILE_KAFKA=docker-compose-kafka.yaml
 # two additional etcd/raft orderers
 COMPOSE_FILE_RAFT2=docker-compose-etcdraft2.yaml
-# use golang as the default language for chaincode
-LANGUAGE=golang
+# use node as the default language for chaincode
+LANGUAGE=node
 # default image tag
 IMAGETAG="latest"
 
