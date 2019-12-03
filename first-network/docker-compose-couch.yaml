@@ -24,6 +24,10 @@ services:
     networks:
       - byfn
 
+    volumes:
+      - /private/var/hyperledger/couchdb0:/opt/couchdb/data
+
+
   peer0.org1.example.com:
     environment:
       - CORE_LEDGER_STATE_STATEDATABASE=CouchDB
@@ -50,6 +54,8 @@ services:
       - "6984:5984"
     networks:
       - byfn
+    volumes:
+      - /private/var/hyperledger/couchdb1:/opt/couchdb/data
 
   peer1.org1.example.com:
     environment:
@@ -77,6 +83,8 @@ services:
       - "7984:5984"
     networks:
       - byfn
+    volumes:
+      - /private/var/hyperledger/couchdb2:/opt/couchdb/data
 
   peer0.org2.example.com:
     environment:
@@ -104,6 +112,9 @@ services:
       - "8984:5984"
     networks:
       - byfn
+    volumes:
+      - /private/var/hyperledger/couchdb3:/opt/couchdb/data
+
 
   peer1.org2.example.com:
     environment:

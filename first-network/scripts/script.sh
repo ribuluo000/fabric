@@ -38,6 +38,8 @@ echo "Channel name : "$CHANNEL_NAME
 
 # import utils
 . scripts/utils.sh
+#是否需要初始化数据
+INITDATA=false
 
 createChannel() {
 	setGlobals 0 1
@@ -69,6 +71,8 @@ joinChannel () {
 	    done
 	done
 }
+
+  if [ $INITDATA != false ]; then
 
 ## Create channel
 echo "Creating channel..."
@@ -114,6 +118,7 @@ if [ "${NO_CHAINCODE}" != "true" ]; then
 	
 fi
 
+fi
 echo
 echo "========= All GOOD, BYFN execution completed =========== "
 echo
