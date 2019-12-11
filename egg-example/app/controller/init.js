@@ -47,6 +47,17 @@ class InitController extends Controller {
     ctx.body = 'hi, init_generate';
   }
 
+  async init_network_start() {
+    const { ctx } = this;
+    logger.info('hi, init_network_start');
+    const dirPath = path.join(__dirname, '../fabric/first-network/');
+    const filePath = path.join(__dirname, '../fabric/first-network/byfn.sh');
+    const stdout = execFileSync(filePath, ['up'], { cwd: dirPath });
+    logger.info(filePath+ ' up result stdout:\n',stdout);
+
+    ctx.body = 'hi, init_network_start';
+  }
+
 }
 
 module.exports = InitController;
