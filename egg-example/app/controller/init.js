@@ -6,7 +6,7 @@ const utils = require('fabric-client/lib/utils.js');
 const logger = utils.getLogger('INIT');
 var path = require('path');
 
-const { exec } = require('child_process');
+const { exec, execFileSync, execFile } = require('child_process');
 
 class InitController extends Controller {
   async init() {
@@ -34,6 +34,17 @@ class InitController extends Controller {
     })
 
     ctx.body = 'hi, init';
+  }
+
+  async init_generate() {
+    const { ctx } = this;
+    logger.info('hi, init_generate');
+    const dirPath = path.join(__dirname, '../fabric/first-network/');
+    const filePath = path.join(__dirname, '../fabric/first-network/byfn.sh');
+    const stdout = execFileSync(filePath, ['generate'], { cwd: dirPath });
+    logger.info(filePath+ 'generate result stdout:\n',stdout);
+
+    ctx.body = 'hi, init_generate';
   }
 
 }

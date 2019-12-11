@@ -13,3 +13,14 @@ run/
 typings/
 .nyc_output/
 app/fabric/bin/
+
+
+#以下文件可以通过接口/init/init_generate生成
+app/fabric/first-network/connection-*
+app/fabric/first-network/docker-compose-e2e.yaml
+app/fabric/first-network/channel-artifacts/*.tx
+app/fabric/first-network/channel-artifacts/*.block
+app/fabric/first-network/crypto-config/
+#以上文件可以通过接口/init/init_generate生成
+
+
