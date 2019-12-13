@@ -9,12 +9,8 @@ echo "|____/    |_|   /_/   \_\ |_| \_\   |_|  "
 echo
 echo "Build your first network (BYFN) end-to-end test"
 echo
-# export PATH=${PWD}/../bin:${PWD}:$PATH
-# export FABRIC_CFG_PATH=${PWD}
-
-# nodejs
-export PATH=${PWD}/../../bin:${PWD}/..:$PATH
-export FABRIC_CFG_PATH=${PWD}/..
+export PATH=${PWD}/../bin:${PWD}:$PATH
+export FABRIC_CFG_PATH=${PWD}
 
 CHANNEL_NAME="$1"
 DELAY="$2"

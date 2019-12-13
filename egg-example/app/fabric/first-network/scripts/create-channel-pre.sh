@@ -9,12 +9,8 @@ echo "|____/    |_|   /_/   \_\ |_| \_\   |_|  "
 echo
 echo "Build your first network (BYFN) end-to-end test"
 echo
-# export PATH=${PWD}/../bin:${PWD}:$PATH
-# export FABRIC_CFG_PATH=${PWD}
-
-# nodejs
-export PATH=${PWD}/../../bin:${PWD}/..:$PATH
-export FABRIC_CFG_PATH=${PWD}/..
+export PATH=${PWD}/../bin:${PWD}:$PATH
+export FABRIC_CFG_PATH=${PWD}
 
 CHANNEL_NAME="$1"
 DELAY="$2"
@@ -50,7 +46,7 @@ function generateChannelArtifacts() {
   echo "### Generating channel configuration transaction 'channel.tx' ###"
   echo "#################################################################"
   set -x
-  configtxgen -profile TwoOrgsChannel -outputCreateChannelTx ../channel-artifacts/channel_$CHANNEL_NAME.tx -channelID $CHANNEL_NAME
+  configtxgen -profile TwoOrgsChannel -outputCreateChannelTx ./channel-artifacts/channel_$CHANNEL_NAME.tx -channelID $CHANNEL_NAME
   res=$?
   set +x
   if [ $res -ne 0 ]; then
@@ -63,7 +59,7 @@ function generateChannelArtifacts() {
   echo "#######    Generating anchor peer update for Org1MSP   ##########"
   echo "#################################################################"
   set -x
-  configtxgen -profile TwoOrgsChannel -outputAnchorPeersUpdate ../channel-artifacts/Org1MSPanchors_$CHANNEL_NAME.tx -channelID $CHANNEL_NAME -asOrg Org1MSP
+  configtxgen -profile TwoOrgsChannel -outputAnchorPeersUpdate ./channel-artifacts/Org1MSPanchors_$CHANNEL_NAME.tx -channelID $CHANNEL_NAME -asOrg Org1MSP
   res=$?
   set +x
   if [ $res -ne 0 ]; then
@@ -77,7 +73,7 @@ function generateChannelArtifacts() {
   echo "#################################################################"
   set -x
   configtxgen -profile TwoOrgsChannel -outputAnchorPeersUpdate \
-    ../channel-artifacts/Org2MSPanchors_$CHANNEL_NAME.tx -channelID $CHANNEL_NAME -asOrg Org2MSP
+    ./channel-artifacts/Org2MSPanchors_$CHANNEL_NAME.tx -channelID $CHANNEL_NAME -asOrg Org2MSP
   res=$?
   set +x
   if [ $res -ne 0 ]; then
