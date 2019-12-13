@@ -17,7 +17,20 @@ export PATH=${PWD}/../../bin:${PWD}/..:$PATH
 export FABRIC_CFG_PATH=${PWD}/..
 
 CHANNEL_NAME="$1"
+DELAY="$2"
+LANGUAGE="$3"
+TIMEOUT="$4"
+VERBOSE="$5"
+NO_CHAINCODE="$6"
 : ${CHANNEL_NAME:="mychannel"}
+: ${DELAY:="3"}
+: ${LANGUAGE:="node"}
+: ${TIMEOUT:="10"}
+: ${VERBOSE:="false"}
+: ${NO_CHAINCODE:="false"}
+LANGUAGE=`echo "$LANGUAGE" | tr [:upper:] [:lower:]`
+COUNTER=1
+MAX_RETRY=10
 
 echo $PATH
 echo $CHANNEL_NAME

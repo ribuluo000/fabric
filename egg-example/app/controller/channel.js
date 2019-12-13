@@ -5,7 +5,8 @@ const utils = require('fabric-client/lib/utils.js');
 const logger = utils.getLogger('CHANNEL');
 const path = require('path');
 const dirPath = path.join(__dirname, '../fabric/first-network/scripts/');
-const filePath = path.join(__dirname, '../fabric/first-network/scripts/create-channel-pre.sh');
+const filePathCreateChannel = path.join(__dirname, '../fabric/first-network/scripts/create-channel-pre.sh');
+const filePathJoinChannel = path.join(__dirname, '../fabric/first-network/scripts/join-channel-pre.sh');
 const { exec, execFileSync, execFile } = require('child_process');
 
 class ChannelController extends Controller {
@@ -15,11 +16,11 @@ class ChannelController extends Controller {
   }
   async create() {
     const { ctx } = this;
-    var channelName = 'mychannel38';
+    var channelName = 'mychannel391';
     logger.info('hi, create');
     try {
-      const stdout = execFileSync(filePath, [channelName], { cwd: dirPath });
-      logger.info(filePath + ' create result stdout:\n', stdout);
+      const stdout = execFileSync(filePathCreateChannel, [channelName], { cwd: dirPath });
+      logger.info(filePathCreateChannel + ' create result stdout:\n', stdout);
     } catch (error) {
       logger.error('error create result stdout:\n', error);
       logger.error('error create result stdout:\n', error.output.toString());
@@ -27,6 +28,22 @@ class ChannelController extends Controller {
     }
 
     ctx.body = 'hi, create';
+  }
+
+  async join() {
+    const { ctx } = this;
+    var channelName = 'mychannel391';
+    logger.info('hi, join');
+    try {
+      const stdout = execFileSync(filePathJoinChannel, [channelName], { cwd: dirPath });
+      logger.info(filePathJoinChannel + ' join result stdout:\n', stdout);
+    } catch (error) {
+      logger.error('error join result stdout:\n', error);
+      logger.error('error join result stdout:\n', error.output.toString());
+
+    }
+
+    ctx.body = 'hi, join';
   }
 
 }
