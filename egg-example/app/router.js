@@ -14,6 +14,7 @@ module.exports = app => {
 
   router.get('/channel/create', controller.channel.create);//创建 channel
   router.get('/channel/join', controller.channel.join);//加入 channel
+  router.get('/channel/update', controller.channel.update);//updateAnchorPeers channel
 
 
 

@@ -43,7 +43,7 @@ function generateChannelArtifacts() {
 
   echo
   echo "#################################################################"
-  echo "### Generating channel configuration transaction 'channel.tx' ###"
+  echo "### Generating channel configuration transaction 'channel_$CHANNEL_NAME.tx' ###"
   echo "#################################################################"
   set -x
   configtxgen -profile TwoOrgsChannel -outputCreateChannelTx ./channel-artifacts/channel_$CHANNEL_NAME.tx -channelID $CHANNEL_NAME
