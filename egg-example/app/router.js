@@ -11,4 +11,9 @@ module.exports = app => {
   router.get('/network/start', controller.network.start);//启动网络
   router.get('/network/start_a_couchdb', controller.network.start_a_couchdb);//启动网络带CA couchdb
 
+
+  router.get('/channel/create', controller.channel.create);//创建 channel
+
+
+
 };

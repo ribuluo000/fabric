@@ -3,6 +3,25 @@ name: first-network-org${ORG}
 version: 1.0.0
 client:
   organization: Org${ORG}
+
+  # Some SDKs support pluggable KV stores, the properties under "credentialStore"
+  # are implementation specific
+  credentialStore:
+    # [Optional]. Specific to FileKeyValueStore.js or similar implementations in other SDKs. Can be others
+    # if using an alternative impl. For instance, CouchDBKeyValueStore.js would require an object
+    # here for properties like url, db name, etc.
+    path: ./fabric-client-kv-org${ORG}
+
+    # [Optional]. Specific to the CryptoSuite implementation. Software-based implementations like
+    # CryptoSuite_ECDSA_AES.js in node SDK requires a key store. PKCS#11 based implementations does
+    # not.
+    cryptoStore:
+      # Specific to the underlying KeyValueStore that backs the crypto key store.
+      path: /tmp/fabric-client-kv-org${ORG}
+
+    # [Optional]. Specific to Composer environment
+    wallet: wallet-name
+
   connection:
     timeout:
       peer:
@@ -36,6 +55,11 @@ certificateAuthorities:
   ca.org${ORG}.example.com:
     url: https://localhost:${CAPORT}
     caName: ca-org${ORG}
+    # Fabric-CA supports dynamic user enrollment via REST APIs. A "root" user, a.k.a registrar, is
+    # needed to enroll and invoke new users.
+    registrar:
+      - enrollId: admin
+        enrollSecret: adminpw
     tlsCACerts:
       pem: |
         ${CAPEM}

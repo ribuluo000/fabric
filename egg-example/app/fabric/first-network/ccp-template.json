@@ -3,6 +3,13 @@
     "version": "1.0.0",
     "client": {
         "organization": "Org${ORG}",
+        "credentialStore": {
+          "path": "./fabric-client-kv-org${ORG}",
+          "cryptoStore": {
+            "path": "/tmp/fabric-client-kv-org${ORG}"
+          },
+          "wallet": "wallet-name"
+        },
         "connection": {
             "timeout": {
                 "peer": {
@@ -49,6 +56,10 @@
         "ca.org${ORG}.example.com": {
             "url": "https://localhost:${CAPORT}",
             "caName": "ca-org${ORG}",
+            "registrar": {
+                "enrollId": "admin",
+                "enrollSecret": "adminpw"
+            },
             "tlsCACerts": {
                 "pem": "${CAPEM}"
             },
