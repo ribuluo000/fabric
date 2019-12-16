@@ -18,6 +18,7 @@ module.exports = app => {
   
   
   router.get('/chaincode/install', controller.chaincode.install);//install chaincode
+  router.get('/chaincode/instantiate', controller.chaincode.instantiate);//instantiate chaincode
 
 
 

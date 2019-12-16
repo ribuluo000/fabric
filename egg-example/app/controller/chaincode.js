@@ -6,7 +6,7 @@ const logger = utils.getLogger('CHANNEL');
 const path = require('path');
 const dirPath = path.join(__dirname, '../fabric/first-network/');
 const filePathInstallChaincode = path.join(__dirname, '../fabric/first-network/scripts/install-chaincode-pre.sh');
-// const filePathInstallChaincode = path.join(__dirname, '../fabric/first-network/scripts/install-chaincode-pre.sh');
+const filePathInstantiateChaincode = path.join(__dirname, '../fabric/first-network/scripts/instantiate-chaincode-pre.sh');
 const { exec, execFileSync, execFile } = require('child_process');
 
 class ChaincodeController extends Controller {
@@ -29,6 +29,22 @@ class ChaincodeController extends Controller {
     }
 
     ctx.body = 'hi, install';
+  }
+  async instantiate() {
+    const { ctx } = this;
+    var channelName = 'mychannel395';
+    logger.info('hi, instantiate');
+    try {
+      const stdout = execFileSync(filePathInstantiateChaincode, [channelName], { cwd: dirPath });
+      logger.info(filePathInstantiateChaincode + ' instantiate result stdout:\n', stdout);
+      logger.info(filePathInstantiateChaincode + ' instantiate result stdout:\n', stdout.toString());
+    } catch (error) {
+      logger.error('error instantiate result stdout:\n', error);
+      logger.error('error instantiate result stdout:\n', error.output.toString());
+
+    }
+
+    ctx.body = 'hi, instantiate';
   }
 
 }
