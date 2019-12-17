@@ -30,6 +30,7 @@ class ChaincodeController extends Controller {
 
     ctx.body = 'hi, install';
   }
+
   async instantiate() {
     const { ctx } = this;
     var channelName = 'mychannel395';
@@ -46,6 +47,54 @@ class ChaincodeController extends Controller {
 
     ctx.body = 'hi, instantiate';
   }
+
+
+  async query() {
+    const { ctx } = this;
+    var channelName = 'mychannel395';
+    logger.info('hi, query');
+    let data = '';
+
+    try {
+      const request = {
+        fcn: 'query',
+        args: ['a'],
+      };
+      data = await ctx.service.hfc.query(request);
+
+      // logger.info('client:\n', client);
+    } catch (error) {
+      logger.error('error query result stdout:\n', error);
+
+    }
+
+    ctx.body = 'hi, query ' + data;
+  }
+
+  async invoke() {
+    const { ctx } = this;
+    var channelName = 'mychannel395';
+    logger.info('hi, invoke');
+    let data = '';
+    try {
+      //发起转账行为，将a->b 10元 
+      var request = {
+        // "targets": ["peer0.org1.example.com"],
+        fcn: 'invoke',
+        args: ['a', 'b', '10'],
+      };
+      const response = await ctx.service.hfc.sendTransaction(request);
+      data = response;
+
+      // logger.info('client:\n', client);
+    } catch (error) {
+      logger.error('error invoke result stdout:\n', error);
+
+    }
+
+    ctx.body = 'hi, invoke ' + data;
+  }
+
 
 }
 
