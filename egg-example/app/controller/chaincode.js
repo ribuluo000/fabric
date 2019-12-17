@@ -7,6 +7,7 @@ const path = require('path');
 const dirPath = path.join(__dirname, '../fabric/first-network/');
 const filePathInstallChaincode = path.join(__dirname, '../fabric/first-network/scripts/install-chaincode-pre.sh');
 const filePathInstantiateChaincode = path.join(__dirname, '../fabric/first-network/scripts/instantiate-chaincode-pre.sh');
+const filePathUpgradeChaincode = path.join(__dirname, '../fabric/first-network/scripts/upgrade-chaincode-pre.sh');
 const { exec, execFileSync, execFile } = require('child_process');
 
 class ChaincodeController extends Controller {
@@ -48,6 +49,23 @@ class ChaincodeController extends Controller {
     ctx.body = 'hi, instantiate';
   }
 
+
+  async upgrade() {
+    const { ctx } = this;
+    var channelName = 'mychannel395';
+    logger.info('hi, upgrade');
+    try {
+      const stdout = execFileSync(filePathUpgradeChaincode, [channelName], { cwd: dirPath });
+      logger.info(filePathUpgradeChaincode + ' upgrade result stdout:\n', stdout);
+      logger.info(filePathUpgradeChaincode + ' upgrade result stdout:\n', stdout.toString());
+    } catch (error) {
+      logger.error('error upgrade result stdout:\n', error);
+      logger.error('error upgrade result stdout:\n', error.output.toString());
+
+    }
+
+    ctx.body = 'hi, upgrade';
+  }
 
   async query() {
     const { ctx } = this;
