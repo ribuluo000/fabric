@@ -9,12 +9,30 @@ const util = require('util');
 
 var Chaincode = class {
 
+  // upgrade the chaincode
+  async upgrade(stub) {
+    console.info('========= example02 upgrade =========');
+    let ret = stub.getFunctionAndParameters();
+    console.info(ret);
+    return shim.success();
+  }
+
+  /**
+   * 注意：在升级过程中，chaincode的Init函数会被调用以执行数据相关的操作，
+   * 或者重新初始化数据；所以要多加小心避免在升级chaincode时重设状态信息。
+   */
   // Initialize the chaincode
   async Init(stub) {
     console.info('========= example02 Init =========');
     let ret = stub.getFunctionAndParameters();
     console.info(ret);
+    let fcn = ret.fcn;
     let args = ret.params;
+    console.info(args);
+    if ('upgrade' === fcn) {
+      return this.upgrade(stub);
+    }
+
     // initialise only if 4 parameters passed.
     if (args.length != 4) {
       return shim.error('Incorrect number of arguments. Expecting 4');
@@ -129,7 +147,7 @@ var Chaincode = class {
 
     jsonResp.name = A;
     jsonResp.amount = Avalbytes.toString();
-    console.info('Query Response:');
+    console.info('Query Response 99:');
     console.info(jsonResp);
     return Avalbytes;
   }

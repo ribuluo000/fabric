@@ -149,7 +149,7 @@ upgradeChaincode() {
   VERSION=${3:-1.0}
 
   set -x
-  peer chaincode upgrade -o orderer.example.com:7050 --tls $CORE_PEER_TLS_ENABLED --cafile $ORDERER_CA -C $CHANNEL_NAME -n mycc -v ${VERSION} -c '{"Args":["init","a","90","b","210"]}' -P "OR ('Org1MSP.peer','Org2MSP.peer', 'Org1MSP.member', 'Org2MSP.member', 'Org1MSP.admin', 'Org2MSP.admin', 'Org1MSP.client', 'Org2MSP.client')"
+  peer chaincode upgrade -o orderer.example.com:7050 --tls $CORE_PEER_TLS_ENABLED --cafile $ORDERER_CA -C $CHANNEL_NAME -n mycc -v ${VERSION} -c '{"Args":["upgrade"]}' -P "OR ('Org1MSP.peer','Org2MSP.peer', 'Org1MSP.member', 'Org2MSP.member', 'Org1MSP.admin', 'Org2MSP.admin', 'Org1MSP.client', 'Org2MSP.client')"
   res=$?
   set +x
   cat log.txt

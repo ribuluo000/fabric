@@ -21,7 +21,7 @@ module.exports = app => {
   
   router.get('/chaincode/install', controller.chaincode.install);//install chaincode
   router.get('/chaincode/instantiate', controller.chaincode.instantiate);//instantiate chaincode
-  router.get('/chaincode/upgrade', controller.chaincode.upgrade);//upgrade chaincode
+  router.get('/chaincode/upgrade', controller.chaincode.upgrade);//upgrade chaincode after install chaincode
   
   router.get('/chaincode/query', controller.chaincode.query);//query chaincode
   router.get('/chaincode/invoke', controller.chaincode.invoke);//invoke chaincode

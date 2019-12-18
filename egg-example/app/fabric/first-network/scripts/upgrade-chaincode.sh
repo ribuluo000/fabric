@@ -13,15 +13,16 @@ echo $LANGUAGE
 # import utils
 . scripts/utils.sh
 
+  VERSION=14
 	# upgrade chaincode on peer0.org1 and peer0.org2
 	echo "upgradeing chaincode on peer0.org1..."
-	upgradeChaincode 0 1 7
+	upgradeChaincode 0 1 $VERSION
 	echo "upgradeing chaincode on peer0.org2..."
-	upgradeChaincode 0 2 7
+	upgradeChaincode 0 2 $VERSION
 
 	## upgrade chaincode on peer1.org2
 	echo "upgradeing chaincode on peer1.org2..."
-	upgradeChaincode 1 2 7
-	upgradeChaincode 1 1 7
+	upgradeChaincode 1 2 $VERSION
+	upgradeChaincode 1 1 $VERSION
 
 exit 0

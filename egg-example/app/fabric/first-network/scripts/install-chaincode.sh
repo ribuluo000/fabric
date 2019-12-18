@@ -13,7 +13,7 @@ echo $LANGUAGE
 # import utils
 . scripts/utils.sh
 
-  VERSION=1
+  VERSION=14
 	# Install chaincode on peer0.org1 and peer0.org2 version
 	echo "Installing chaincode on peer0.org1..."
 	installChaincode 0 1 $VERSION
