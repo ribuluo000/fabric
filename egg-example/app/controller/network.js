@@ -16,11 +16,21 @@ class NetworkController extends Controller {
     ctx.body = 'hi, network';
   }
 
+
+  async clear() {
+    const { ctx } = this;
+    logger.info('hi, clear');
+    const stdout = execFileSync(filePath, ['clear'], { cwd: dirPath });
+    logger.info(filePath + ' clear result stdout:\n', stdout);
+
+    ctx.body = 'hi, clear';
+  }
+
   async stop() {
     const { ctx } = this;
     logger.info('hi, stop');
     const stdout = execFileSync(filePath, ['down'], { cwd: dirPath });
-    logger.info(filePath + ' up result stdout:\n', stdout);
+    logger.info(filePath + ' down result stdout:\n', stdout);
 
     ctx.body = 'hi, stop';
   }

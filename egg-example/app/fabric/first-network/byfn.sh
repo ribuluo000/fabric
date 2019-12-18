@@ -278,6 +278,11 @@ function networkDown() {
   # stop kafka and zookeeper containers in case we're running with kafka consensus-type
   docker-compose -f $COMPOSE_FILE -f $COMPOSE_FILE_COUCH -f $COMPOSE_FILE_KAFKA -f $COMPOSE_FILE_RAFT2 -f $COMPOSE_FILE_CA down --volumes --remove-orphans
 
+}
+
+# Clear network
+function networkClear() {
+  networkDown
   # Don't remove the generated artifacts -- note, the ledgers are always removed
   if [ "$MODE" != "restart" ]; then
     # Bring down the network, deleting the volumes
@@ -289,6 +294,7 @@ function networkDown() {
     removeUnwantedImages
     # remove orderer block and other channel configuration transactions and certs
     rm -rf channel-artifacts/*.block channel-artifacts/*.tx crypto-config ./org3-artifacts/crypto-config/ channel-artifacts/org3.json
+    rm -rf /var/hyperledger/*
     # remove the docker-compose yaml file that was customized to the example
     rm -f docker-compose-e2e.yaml
   fi
@@ -527,6 +533,8 @@ elif [ "$MODE" == "down" ]; then
   EXPMODE="Stopping"
 elif [ "$MODE" == "restart" ]; then
   EXPMODE="Restarting"
+elif [ "$MODE" == "clear" ]; then
+  EXPMODE="Clearing"
 elif [ "$MODE" == "generate" ]; then
   EXPMODE="Generating certs and genesis block"
 elif [ "$MODE" == "upgrade" ]; then
@@ -593,8 +601,10 @@ fi
 #Create the network using docker compose
 if [ "${MODE}" == "up" ]; then
   networkUp
-elif [ "${MODE}" == "down" ]; then ## Clear the network
+elif [ "${MODE}" == "down" ]; then ## Down the network
   networkDown
+elif [ "${MODE}" == "clear" ]; then ## Clear the network
+  networkClear
 elif [ "${MODE}" == "generate" ]; then ## Generate Artifacts
   generateCerts
   replacePrivateKey
