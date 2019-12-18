@@ -16,6 +16,14 @@ class NetworkController extends Controller {
     ctx.body = 'hi, network';
   }
 
+  async restart() {
+    const { ctx } = this;
+    logger.info('hi, restart');
+    const stdout = execFileSync(filePath, ['restart', '-a', '-n', '-s', 'couchdb'], { cwd: dirPath });
+    logger.info(filePath + ' restart result stdout:\n', stdout);
+
+    ctx.body = 'hi, restart';
+  }
 
   async clear() {
     const { ctx } = this;
