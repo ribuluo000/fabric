@@ -13,7 +13,7 @@ echo $LANGUAGE
 # import utils
 . scripts/utils.sh
 
-  VERSION=1
+  VERSION=14
 	# Instantiate chaincode on peer0.org2
 	echo "Instantiating chaincode on peer0.org2..."
 	instantiateChaincode 0 2 $VERSION

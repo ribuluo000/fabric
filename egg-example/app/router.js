@@ -25,6 +25,9 @@ module.exports = app => {
   
   router.get('/chaincode/query', controller.chaincode.query);//query chaincode
   router.get('/chaincode/invoke', controller.chaincode.invoke);//invoke chaincode
+  
+  
+  router.get('/client/getChannels', controller.client.getChannels);//client getChannels
 
 
 

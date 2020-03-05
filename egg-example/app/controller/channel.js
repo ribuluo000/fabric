@@ -17,7 +17,7 @@ class ChannelController extends Controller {
   }
   async create() {
     const { ctx } = this;
-    var channelName = 'mychannel395';
+    var channelName = 'mychannel396';
     logger.info('hi, create');
     try {
       const stdout = execFileSync(filePathCreateChannel, [channelName], { cwd: dirPath });
@@ -34,7 +34,7 @@ class ChannelController extends Controller {
 
   async join() {
     const { ctx } = this;
-    var channelName = 'mychannel395';
+    var channelName = 'mychannel396';
     logger.info('hi, join');
     try {
       const stdout = execFileSync(filePathJoinChannel, [channelName], { cwd: dirPath });
@@ -51,7 +51,7 @@ class ChannelController extends Controller {
 
   async update() {
     const { ctx } = this;
-    var channelName = 'mychannel395';
+    var channelName = 'mychannel396';
     logger.info('hi, update');
     try {
       const stdout = execFileSync(filePathUpdateChannelAnchorPeers, [channelName], { cwd: dirPath });

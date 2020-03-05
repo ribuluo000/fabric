@@ -7,6 +7,7 @@ var sdkUtils = require('fabric-client/lib/utils')
 const utils = require('fabric-client/lib/utils.js');
 const logger = utils.getLogger('hfc');
 const fs = require('fs');
+const chaincode_path = path.resolve(__dirname, '../fabric/chaincode/chaincode_example02/node/');
 
 const getKeyFilesInDir = (dir) => {
   //该函数用于找到keystore目录下的私钥文件的路径 
@@ -24,8 +25,10 @@ const getKeyFilesInDir = (dir) => {
 var options = {
   user_id: 'Admin@org1.example.com',
   msp_id: 'Org1MSP',
-  channel_id: 'mychannel395',
+  channel_id: 'mychannel396',
   chaincode_id: 'mycc',
+  chaincode_version: '6',
+  chaincode_path: chaincode_path,
   peer_url: 'grpcs://localhost:7051',//因为启用了TLS，所以是grpcs,如果没有启用TLS，那么就是grpc 
   event_url: 'grpcs://localhost:7053',//因为启用了TLS，所以是grpcs,如果没有启用TLS，那么就是grpc 
   orderer_url: 'grpcs://localhost:7050',//因为启用了TLS，所以是grpcs,如果没有启用TLS，那么就是grpc 

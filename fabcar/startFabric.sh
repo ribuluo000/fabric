@@ -49,8 +49,8 @@ rm -rf ./hfc-key-store
 
 # launch network; create channel and join peer to channel
 cd ../first-network
-echo y | ./byfn.sh restart -a -n -s couchdb
-# echo y | ./byfn.sh up -a -n -s couchdb
+# echo y | ./byfn.sh restart -a -n -s couchdb
+echo y | ./byfn.sh up -a -n -s couchdb
 
   fi
 CONFIG_ROOT=/opt/gopath/src/github.com/hyperledger/fabric/peer
